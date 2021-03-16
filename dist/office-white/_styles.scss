@@ -89,6 +89,19 @@
 		border-color: transparent;
 	}
 }
+/* Bootstrap5 correction */
+.dxbs-dropdown-edit > .dxbs-input-group > .dxbs-input-group-append {
+	box-shadow: none;
+	& > .dxbs-edit-btn {
+		padding: $inputgroup-dropdowntoggle-padding-y-md $inputgroup-dropdowntoggle-padding-x-md;
+		&.btn-sm {
+			padding: $inputgroup-dropdowntoggle-padding-y-sm $inputgroup-dropdowntoggle-padding-x-sm;
+		}
+		&.btn-lg {
+			padding: $inputgroup-dropdowntoggle-padding-y-lg $inputgroup-dropdowntoggle-padding-x-lg;
+		}
+	}
+}
 @mixin btn-left-divider($color) {
 	position: relative;
 	&:not(.active):not(:active) {
@@ -250,6 +263,7 @@
 // Forms
 
 .input-group > .input-group-prepend > .btn-secondary,
+.input-group > .dxbs-input-group-append > .btn-secondary, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn-secondary {
   border-color: $input-border-color !important;
 }
@@ -266,6 +280,7 @@ select.form-control > option:checked,
     border-left: 0;
 }
 .input-group > .input-group-prepend > .btn,
+.input-group > .dxbs-input-group-append > .btn, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn {
   border-radius: $theme-border-radius;
   box-shadow: none !important;
@@ -410,6 +425,7 @@ ul.nav-tabs > li {
 		.btn-group,
 		.btn-group-vertical,
 		.input-group > .input-group-prepend,
+		.input-group > .dxbs-input-group-append, /* Bootstrap5 correction */
 		.input-group > .input-group-append {
 			.btn-#{$color} {
 				&:focus,
@@ -425,6 +441,7 @@ ul.nav-tabs > li {
 			}
 		}
 		.input-group > .input-group-prepend,
+		.input-group > .dxbs-input-group-append, /* Bootstrap5 correction */
 		.input-group > .input-group-append {
 			& > .btn-#{$color} {
 				&:focus,

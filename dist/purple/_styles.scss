@@ -90,6 +90,20 @@
 		border-color: transparent;
 	}
 }
+/* Bootstrap5 correction */
+.dxbs-dropdown-edit > .dxbs-input-group > .dxbs-input-group-append {
+	box-shadow: none;
+	border-radius: 0 3px 0 0;
+	& > .dxbs-edit-btn {
+		padding: $inputgroup-dropdowntoggle-padding-y-md $inputgroup-dropdowntoggle-padding-x-md;
+		&.btn-sm {
+			padding: $inputgroup-dropdowntoggle-padding-y-sm $inputgroup-dropdowntoggle-padding-x-sm;
+		}
+		&.btn-lg {
+			padding: $inputgroup-dropdowntoggle-padding-y-lg $inputgroup-dropdowntoggle-padding-x-lg;
+		}
+	}
+}
 @mixin btn-left-divider($color) {
 	position: relative;
 	&:not(.active):not(:active) {
@@ -275,12 +289,15 @@ select.form-control > option:checked,
     border-left: 0;
 }
 .input-group > .input-group-prepend,
+.input-group > .dxbs-input-group-append, /* Bootstrap5 correction */
 .input-group > .input-group-append {
     margin-right: 0;
     margin-left: 0;
 }
 .input-group > .input-group-prepend > .btn,
 .input-group > .input-group-prepend > .input-group-text,
+.input-group > .dxbs-input-group-append > .btn, /* Bootstrap5 correction */
+.input-group > .dxbs-input-group-append > .input-group-text, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn,
 .input-group > .input-group-append > .input-group-text {
     background-color: $input-bg;
@@ -293,6 +310,7 @@ select.form-control > option:checked,
     margin-left: 0;
 }
 .input-group > .input-group-prepend > .btn,
+.input-group > .dxbs-input-group-append > .btn, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn {
     @include border-radius($input-border-radius);
 
@@ -302,29 +320,47 @@ select.form-control > option:checked,
     padding-bottom: $input-btn-padding-y;
 }
 .input-group > .input-group-prepend > .btn,
+.input-group > .dxbs-input-group-append:not(:last-child) > .btn, /* Bootstrap5 correction */
+.input-group > .dxbs-input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), /* Bootstrap5 correction */
 .input-group > .input-group-append:not(:last-child) > .btn,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
-  @include border-right-radius(0);
+	@if mixin-exists("border-right-radius") {
+		@include border-right-radius(0);
+	}
+	@if mixin-exists("border-end-radius") {
+		@include border-end-radius(0);
+	}
 }
 
+.input-group > .dxbs-input-group-append > .btn, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child) {
-  @include border-left-radius(0);
+	@if mixin-exists("border-left-radius") {
+		@include border-left-radius(0);
+	}
+	@if mixin-exists("border-end-radius") {
+		@include border-start-radius(0);
+	}
 }
 .input-group > .input-group-prepend > .btn.focus:not(:disabled):not(.disabled),
 .input-group > .input-group-prepend > .btn:focus:not(:disabled):not(.disabled),
+.input-group > .dxbs-input-group-append > .btn.focus:not(:disabled):not(.disabled), /* Bootstrap5 correction */
+.input-group > .dxbs-input-group-append > .btn:focus:not(:disabled):not(.disabled), /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn.focus:not(:disabled):not(.disabled),
 .input-group > .input-group-append > .btn:focus:not(:disabled):not(.disabled) {
     box-shadow: none!important;
 }
 .input-group > .input-group-prepend > .btn:hover,
+.input-group > .dxbs-input-group-append > .btn:hover, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn:hover {
     background-color: rgba(0,0,0,0.16);
     color: $gray-700;
 }
 .input-group > .input-group-prepend > .btn.active,
 .input-group > .input-group-prepend > .btn:active,
+.input-group > .dxbs-input-group-append > .btn.active, /* Bootstrap5 correction */
+.input-group > .dxbs-input-group-append > .btn:active, /* Bootstrap5 correction */
 .input-group > .input-group-append > .btn.active,
 .input-group > .input-group-append > .btn:active {
     background-color: rgba(0,0,0,0.20);
@@ -487,6 +523,7 @@ select.form-control > option:checked,
 			border-radius: 3em 0 0 3em;
 		}
 	}
+	.dxbs-input-group-append, /* Bootstrap5 correction */
 	.input-group-append {
 		&,
 		& > .input-group-text {
@@ -556,6 +593,7 @@ select.form-control > option:checked,
 		.btn-group,
 		.btn-group-vertical,
 		.input-group > .input-group-prepend,
+		.input-group > .dxbs-input-group-append, /* Bootstrap5 correction */
 		.input-group > .input-group-append {
 			.btn-#{$color} {
 				&:focus,
@@ -571,6 +609,7 @@ select.form-control > option:checked,
 			}
 		}
 		.input-group > .input-group-prepend,
+		.input-group > .dxbs-input-group-append, /* Bootstrap5 correction */
 		.input-group > .input-group-append {
 			& > .btn-#{$color} {
 				&:focus,
